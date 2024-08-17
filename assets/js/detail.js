@@ -109,7 +109,7 @@ fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api
                 </ul>
             </div>
             <div class="title-wrapper">
-                <h3 class="title-large">Movie</h3>
+                <h3 class="title-large">Movie Trailer</h3>
             </div>
             <div class="slider-list">
                 <div class="slider-inner"></div>
@@ -117,13 +117,13 @@ fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api
         </div>
     `;
 
-
+    for (const { key, name } of filterVideos(videos)) {
         const videoCard = document.createElement('div');
         videoCard.className = 'video-card';
         videoCard.innerHTML = `
-        <iframe width="500" height="294" src="https://vidsrc.xyz/embed/movie/${movieId}" frameborder="0" allowfullscreen="1" title="${name}" class="img-cover" loading="lazy"></iframe>`;
+        <iframe width="500" height="294" src="https://www.youtube.com/embed/${key}?&theme=dark&color=white&rel=0" frameborder="0" allowfullscreen="1" title="${name}" class="img-cover" loading="lazy"></iframe>`;
         movieDetail.querySelector('.slider-inner').appendChild(videoCard);
-       
+    }
         pageContent.appendChild(movieDetail);
        
     fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?page=1&api_key=${api_key}`, addSuggestedMovies);
